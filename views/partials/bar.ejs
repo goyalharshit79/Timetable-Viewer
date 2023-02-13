@@ -1,0 +1,12 @@
+<div class="left-stuff">
+    <table id="days-table">
+        <%for(let i = 0 ; i < days.length ; i++){%>
+            <tr>
+                <td class="days">
+                    <a href= <%= "/timetable/" + days[i] %>> <%= days[i]; %></a>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <div id="days-line"></div>
+</div>

@@ -1,0 +1,53 @@
+<%- include("partials/header") %>
+<%- include("partials/bar") %>
+
+<div class="timetable">
+    <table>
+        <tr>
+            <td>
+                <div class="cell"><%= timetable[0] %></div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="cell"><%= timetable[1] %></div>
+            </td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>
+                <div class="cell"><%= timetable[2] %></div>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <div id="spacer"></div>
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <td>
+                <div class="cell"><%= timetable[3] %></div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div class="cell"><%= timetable[4] %></div>
+            </td>
+        </tr>
+        <tr>
+            <td></td><td></td>
+            <td>
+                <div class="cell"><%= timetable[5] %></div>
+            </td>
+        </tr>
+    </table>
+</div>
+    
+<%- include("partials/footer") %>

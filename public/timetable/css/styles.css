@@ -1,0 +1,144 @@
+body{
+    margin: 0;
+}
+#heading{
+    text-align: center;
+    font-family: rajdhani;
+    font-weight: 500;
+
+    font-size: 50px;
+}
+
+.container{
+    height: 500px;
+    width: 70%;
+    background-color: rgb(214, 220, 229);
+    border-radius: 100px;
+}
+#vertical-line{
+    height: 350px;
+    width: 2.5px;
+    background-color: rgb(31, 78, 121);
+    float: right;
+    margin-right: 35%;
+    margin-top: 65px;
+}
+form{
+    position: absolute;
+    right: 20%;
+    top: 200px;
+}
+/* Footer Stuff */
+.footer{
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(214, 220, 229);
+}
+.footer p{
+    font-size: large;
+    font-family: rajdhani;
+}
+
+.textbox{
+    border: 0;
+    border-radius: 5px;
+    height: 35px;
+    width: 250px;
+    background-color: rgb(189,215,238);
+    font-family: rajdhani;
+    font-size: medium;
+    color: black;
+}
+.label{
+    font-family: rajdhani;
+    font-size: x-large;
+    text-align: left;
+}
+.login-button{
+    display: block;
+    height: 40px;
+    width: 150px;
+    margin-top: 35px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-family: rajdhani;
+    font-size: large;
+    background-color: rgb(31,78,121);
+
+}
+#title{
+    font-family: rajdhani;
+    font-size: 40px;
+    color: rgb(31,78,121);
+    display: inline-block;
+    margin-top: 80px;
+    margin-bottom: 0;
+
+}
+#horizontal-line{
+    height: 2.5px;
+    width: 200px;
+    background-color: rgb(31, 78, 121);
+    display: inline-block;
+    margin-left: 120px;
+}
+
+img{
+    height: 250px;
+    width: auto;
+    
+}
+table{
+    display: inline-block;
+}
+.left-stuff{
+    display: inline-block;
+}
+#days-table{
+    margin-top: 70px;
+}
+.days{
+    padding: 30px 50px 35px 100px;
+}
+.days a{
+    font-family: rajdhani;
+    font-size: 25px;
+    color: rgb(31, 78, 121);
+    text-decoration: none;
+}
+#days-line{
+    height: 450px;
+    width: 2.5px;
+    background-color: rgb(31, 78, 121);
+
+    display: inline-block;
+    margin-bottom: 65px;
+}
+.cell{
+    width: 200px;
+    height: 50px;
+    background-color: rgb(31, 78, 121);
+    border-radius: 10px;
+    margin-right: 100px;
+    text-align: center;
+    color: white;
+    font-family: rajdhani;
+    font-size: 25px;
+    padding-top: 12.5px;
+}
+#spacer{
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 100px;
+}
+.timetable table{
+    display: inline-block;
+    position: absolute;
+    top: 140px;
+    left: 500px;
+}

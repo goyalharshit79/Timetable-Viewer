@@ -1,0 +1,44 @@
+<%- include("partials/header") %>
+
+<body>
+
+    <h1 id="heading">Log Into your account</h1>
+    <center>
+        <div class="container">
+            <table>
+                <th>
+                    <h2 id="title">Timetable Viewer</h2>
+                </th>
+                <tr>
+                    <td>
+                        <div id="horizontal-line"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="logo.jpg" alt="logo image">
+                    </td>
+                </tr>
+            </table>
+            
+            
+
+            <div id="vertical-line"></div>
+            <form action="/" method="post">
+                <p class="label">Username</p>
+                <input class="textbox" type="text" name="usernameTyped">
+                <p class="label">Password</p>
+                <input class="textbox" type="password" name="passwordTyped">
+                <button type="submit" class="login-button">Log In</button>
+            </form>
+
+            <div class="right-line" id="horizontal-line"></div>
+
+            <a href="/signup"><div class="login-button" id="signup-button"> <p> New User! </p></div></a>
+            
+        </div>
+    </center>
+    
+</body>
+
+<%- include("partials/footer") %>

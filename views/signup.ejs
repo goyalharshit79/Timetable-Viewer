@@ -1,0 +1,48 @@
+<%- include("partials/header") %>
+<center>
+    <h1 id="heading">Create an Account</h1>
+<div class="container" id="signup-container">
+    <form action="/signup" method="post">
+        <table>
+            <tr>
+                <td>
+                <p class="label">Username</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="textbox" type="text" name="username">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <p class="label">Password</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="textbox" type="text" name="password">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <p class="label">Confirm Password</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input class="textbox" type="text" name="confirmPassword">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <center>
+                    <button type="submit" class="login-button">Sign Me Up!</button>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</center>
+<%- include("partials/footer") %>
