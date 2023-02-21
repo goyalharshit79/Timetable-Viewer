@@ -52,6 +52,10 @@ form{
     font-size: medium;
     color: black;
 }
+.textbox:focus{
+    outline-color: rgb(1, 63, 130);
+    outline-width: 0.25px;
+}
 .label{
     font-family: rajdhani;
     font-size: x-large;
@@ -141,4 +145,62 @@ table{
     position: absolute;
     top: 140px;
     left: 500px;
+}
+#signup-container{
+    width: 30%;
+}
+.container form table{
+
+    margin-right: 330px;
+    margin-bottom: 200px;
+}
+.container form{
+    position: absolute;
+    top: 150px;
+}
+
+#signup-button{
+    position: relative;
+    left: 335px;
+    bottom: 80px;
+}
+
+#signup-button p{
+    padding-top: 8.5px;
+}
+.right-line{
+    position: relative;
+    left: 270px;
+    bottom: 75px;
+}
+
+.signout{
+    width: 75px;
+    height: 75px;
+    background-color: rgb(31, 78, 121);
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+    margin-right: 50px;
+    margin-top: 50px;
+    text-align: center;
+
+}
+#signout{
+    font-family: rajdhani;
+    display: inline-block;
+    margin-top: 25px;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.signup-label{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.signup-textbox{
+    height: 30px;
 }

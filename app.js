@@ -1,7 +1,9 @@
 //requiring the stuff
 const  express= require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
+const mongoose = require("mongoose");
+const _ = require("lodash");
+const data = require(__dirname + "/putData.js")
 
 //setting up the app
 const app = express();
@@ -9,82 +11,112 @@ app.use(bodyParser.urlencoded({extended : true}));
 app.set("view engine" , "ejs");
 app.use(express.static("public"));
 
-//constants and variables to be used
-const users = [];
-let user = {username: "goyalharshit79", password: "goyalharshit79"};
-users.push(user);
-const days = ["Monday","Tuesday","Wednessday","Thursday","Friday","Saturday"];
-const timetable = {monday: ["UBBA-401" , "UBBA-402" ,"UBBA-403" , "UGEN-401" , "Free" , "Sec Lang"],
-                   tuesday: ["UGEN-401" , "UBBA-403" ,"Sec Lang" , "UBBA-404" , "UBBA-404" , "UBBA-402"],
-                    wednessday: ["UAWR-400" , "UBBA-402" ,"INTERNET" , "Sec Lang" , "UBBA-402" , "UGEN-401"],
-                    thursday: ["UBBA" , "UBBA" ,"UBBA" , "UBBA" , "UBBA" , "UBBA"],
-                    friday: ["UBBA" , "UBBA" ,"UBBA" , "UBBA" , "UBBA" , "UBBA"],
-                    saturday: ["UBBA" , "UBBA" ,"UBBA" , "UBBA" , "UBBA" , "UBBA"],
-                    before: ["Class" , "Class" ,"Class" , "Class" , "Class" , "Class"]};
+//putting the data
+const models = data.putData();
+const ClassTimetable = models[0];
+const User = models[1]
 
+//constants and variables to be used
+const days = ["Monday","Tuesday","Wednessday","Thursday","Friday","Saturday"];
+var userLoggedIn = [];
 
 
 app.get("/" , (req,res)=>{
+    userLoggedIn = [];
     res.render("signin");
 });
+
 app.get("/signup" , (req,res)=>{
     res.render("signup");
 });
 
 app.get("/timetable" , (req,res)=>{
-    res.render("timetable",{days:days});
+    res.render("timetable",{days:days}); 
 });
-app.get("/timetable/:day" , (req,res)=>{
 
-    switch (req.params.day) {
-        case "Monday":
-            res.render("schedule",{days:days , timetable: timetable.monday});        
-            break;
-        case "Tuesday":
-            res.render("schedule",{days:days , timetable: timetable.tuesday});        
-            break;
-        case "Wednessday":
-            res.render("schedule",{days:days , timetable: timetable.wednessday});        
-            break;
-        case "Thursday":
-            res.render("schedule",{days:days , timetable: timetable.thursday});        
-            break;
-        case "Friday":
-            res.render("schedule",{days:days , timetable: timetable.friday});        
-            break;
-        case "Saturday":
-            res.render("schedule",{days:days , timetable: timetable.saturday});        
-            break;
-        default:
-            res.render("schedule",{days:days , timetable: timetable.before}); 
-            break;
-    }
+app.get("/timetable/:day" , (req,res)=>{
+    const classNeeded = userLoggedIn[0].class;
+    ClassTimetable.find({class: classNeeded} , (err,foundTimetable)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            switch (req.params.day) {
+                case "Monday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].monday});
+                
+                    break;
+                case "Tuesday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].tuesday});
+                
+                    break;
+                case "Wednessday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].wednessday});        
+                    break;
+                case "Thursday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].thursday});
+            
+                    break;
+                case "Friday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].friday});
+                
+                    break;
+                case "Saturday":
+                    res.render("schedule" , {days: days, timetable : foundTimetable[0].saturday});
+                
+                    break;
+                default:
+                    break;
+                }   
+        }
+    });
     
 });
 
 app.post("/" , (req,res)=>{
-    let userFound = false;
-    users.forEach(user => {
-        if (req.body.usernameTyped === user.username && req.body.passwordTyped === user.password) {
-            userFound = true;
-            res.redirect("/timetable");
+    usernameTyped = req.body.usernameTyped;
+    passwordTyped= req.body.passwordTyped;
+    User.find({username: usernameTyped} , (err,userFound)=>{
+        if(!err){
+            if (userFound.length === 1) {
+                if (userFound[0].password === passwordTyped) {
+                    userLoggedIn.push(userFound[0]);
+                    res.redirect("/timetable");
+                }else{
+                    console.log("Wrong Password!");
+                    res.redirect("/");
+                }
+            } else {
+                console.log("User Not Found!");
+                res.redirect("/");
+            }
         }
-    });
-    if (userFound === false) {
-        res.redirect("/");
-    }
+    })
 });
+
+//adding a new user
 app.post("/signup" , (req,res)=>{
-
-    if (req.body.password === req.body.confirmPassword) {
-        user = {username: req.body.username, password: req.body.password};
-        users.push(user);
-        res.redirect("/");
-
-    } else {
-        res.redirect("/signup");
-        console.log("Passowrds dont match");
-    } 
+    username = req.body.username;
+    password = req.body.password;
+    User.find({username: username , password: password} , (err,userFound)=>{
+        if (userFound.length === 1) {
+            console.log("User already exists!");
+            res.redirect("/signup");
+        } else {
+            if (password === req.body.confirmPassword) {
+                const user = new User({
+                    username: username,
+                    password: password,
+                    class: req.body.class
+                });
+                user.save();
+                res.redirect("/");
+            } else {
+                console.log("Passwords don't match!");
+                res.redirect("/signup");
+            }
+        }
+    })
 });
 
 
