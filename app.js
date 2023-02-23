@@ -43,43 +43,7 @@ app.get("/timetable" , (req,res)=>{
     if (userLoggedIn.length === 0) {
         res.redirect("/");
     } else {
-        // res.render("timetable",{days:days});
-        const classNeeded = userLoggedIn[0].class;
-        ClassTimetable.find({class: classNeeded} , (err,foundTimetable)=>{
-            if(err){
-                console.log(err);
-            }
-            else{
-                switch (day) {
-                    case "Monday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].monday});
-                    
-                        break;
-                    case "Tuesday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].tuesday});
-                    
-                        break;
-                    case "Wednesday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].wednesday});        
-                        break;
-                    case "Thursday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].thursday});
-                
-                        break;
-                    case "Friday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].friday});
-                    
-                        break;
-                    case "Saturday":
-                        res.render("schedule" , {days: days, timetable : foundTimetable[0].saturday});
-                    
-                        break;
-                    default:
-                        break;
-                    }   
-            }
-        }); 
-
+        res.redirect("/timetable/" + day);
     }
     
 });
