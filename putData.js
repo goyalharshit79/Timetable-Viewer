@@ -46,7 +46,7 @@ module.exports.putData = ()=> {
     })
     ClassTimetable.find({class: "BBA-I"} , (err,classFound)=>{
         if (classFound.length === 0){
-            const BBA2 = new ClassTimetable({
+            const BBA1 = new ClassTimetable({
                 class: "BBA-I",
                 monday: ["UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101"],
                 tuesday: ["UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101"],
@@ -56,12 +56,12 @@ module.exports.putData = ()=> {
                 saturday: ["UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101", "UBBA-101"],
                 before: ["Class" , "Class" ,"Class" , "Class" , "Class" , "Class"]
             });
-            BBA2.save();
+            BBA1.save();
         }
     })
     ClassTimetable.find({class: "BBA-III"} , (err,classFound)=>{
         if (classFound.length === 0){
-            const BBA2 = new ClassTimetable({
+            const BBA3 = new ClassTimetable({
                 class: "BBA-III",
                 monday: ["UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601"],
                 tuesday: ["UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601"],
@@ -71,7 +71,7 @@ module.exports.putData = ()=> {
                 saturday: ["UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601", "UBBA-601"],
                 before: ["Class" , "Class" ,"Class" , "Class" , "Class" , "Class"]
             });
-            BBA2.save();
+            BBA3.save();
         }
     })
     //creating the first user
